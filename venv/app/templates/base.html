@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }} : MagnumPy</title>
+    {% else %}
+    <title>MagnumPy</title>
+    {% endif %}
+</head>
+<body>
+    <div>
+        <a href="/index">Home</a> | <a href="/sample_gpio">Sample GPIO</a> | <a href="/sample_lcd">Sample LCD</a>
+    </div>
+    <hr />
+    <div>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
