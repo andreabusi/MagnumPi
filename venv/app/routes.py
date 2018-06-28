@@ -33,15 +33,12 @@ def sample_gpio():
     return render_template('result.html', title='Sample GPIO', result_text="GPIO commands executed!")
 
 
-@app.route('/sample_lcd')
-def sample_lcd():
-    my_gpio = gpio.MyGPIO()
-    my_gpio.lcd_text('Ciao mondo!')
-    return render_template('result.html', title='Sample LCD Display', result_text="Command sent to LCD Display")
-
-
-@app.route('/lcd')
+@app.route('/lcd', methods=['GET', 'POST'])
 def lcd():
     form = LcdForm()
+    if form.validate_on_submit():
+        my_gpio = gpio.MyGPIO()
+        my_gpio.lcd_text(form.lcd_text.data)
+        return render_template('result.html', title='LCD Display', result_text="Text sent to LCD Display")
     return render_template('lcd.html', title='LCD Display', form=form)
 
