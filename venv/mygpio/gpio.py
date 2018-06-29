@@ -1,13 +1,11 @@
 from app.utils import Utils
 # when the app runs on a non raspberry environment, a fake library will be imported
-try:
-    import RPi.GPIO as GPIO
-except ImportError:
+if Utils.is_simulator():
     import fakeRPi.GPIO as GPIO
-try:
-    import I2C_LCD_driver # TODO: come faccio a farla puntare alla libreria corretta?
-except ImportError:
     import fakeRPi.I2C_LCD_driver as I2C_LCD_driver
+else:
+    import RPi.GPIO as GPIO
+    import I2C_LCD_driver
 
 
 class MyGPIO:

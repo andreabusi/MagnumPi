@@ -2,6 +2,11 @@
 
 {% block content %}
     <h1>LCD Display</h1>
+
+    {% if previous_text %}
+    <p>Text sent: <strong>{{ previous_text }}</strong></p>
+    {% endif %}
+
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
