@@ -11,7 +11,7 @@ else:
 class MyGPIO:
     def __init__(self):
         self.name = "GPIO"
-        self.mylcd = RPi_I2C_driver.lcd(address=0x27)
+        self.mylcd = RPi_I2C_driver.lcd(address=0x3f)
 
     def lcd_text(self, text):
         self.mylcd.lcd_display_string(text, 1)
