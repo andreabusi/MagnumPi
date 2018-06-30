@@ -2,16 +2,16 @@ from app.utils import Utils
 # when the app runs on a non raspberry environment, a fake library will be imported
 if Utils.is_simulator():
     import fakeRPi.GPIO as GPIO
-    import fakeRPi.I2C_LCD_driver as I2C_LCD_driver
+    import fakeRPi.RPi_I2C_driver as RPi_I2C_driver
 else:
     import RPi.GPIO as GPIO
-    import I2C_LCD_driver
+    import RPi_I2C_driver
 
 
 class MyGPIO:
     def __init__(self):
         self.name = "GPIO"
-        self.mylcd = I2C_LCD_driver.lcd()
+        self.mylcd = RPi_I2C_driver.lcd(address=0x27)
 
     def lcd_text(self, text):
         self.mylcd.lcd_display_string(text, 1)

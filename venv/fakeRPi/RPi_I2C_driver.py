@@ -1,5 +1,5 @@
 """
-Fake class to simulate I2C_LCD_driver library outside a Raspberry PI
+Fake class to simulate RPi_I2C_driver.py library outside a Raspberry PI
 """
 
 class lcd:
