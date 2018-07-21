@@ -2,12 +2,17 @@
 
 A simple web application to manage Raspberry PI GPIO.
 
-Actually work in progres...
+Actually work in progress...
 
-## Features
+## Available features
 
-- /lcd
-- /gpio
+The following feature are already available
+
+- **/lcd**: a sample page to send a text to I2C LCD display
+
+## In development features
+
+- **/gpio**
 
 ## Deployment
 
