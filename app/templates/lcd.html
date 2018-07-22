@@ -7,7 +7,7 @@
     <p>Text sent: <strong>{{ previous_text }}</strong></p>
     {% endif %}
 
-    <form action="" method="post" novalidate>
+    <form action="/lcd" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
             {{ form.lcd_text.label }}<br>
