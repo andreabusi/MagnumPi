@@ -3,8 +3,9 @@ Fake class to simulate RPi_I2C_driver.py library outside a Raspberry PI
 """
 
 class lcd:
-    def __init__(self):
+    def __init__(self, address):
         self.name = "LCD"
+        self.address = address
 
     # put string function
     def lcd_display_string(self, string, line):
