@@ -42,3 +42,10 @@ def lcd():
         return render_template('lcd.html', title='LCD Display', previous_text=form.lcd_text.data, form=form)
     return render_template('lcd.html', title='LCD Display', form=form)
 
+
+@app.route('/lcd_clear')
+def lcd_clear():
+    my_gpio = gpio.MyGPIO()
+    my_gpio.lcd_clear()
+    form = LcdForm()
+    return render_template('lcd.html', title='LCD Display', form=form)

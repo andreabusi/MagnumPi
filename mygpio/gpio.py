@@ -16,6 +16,9 @@ class MyGPIO:
     def lcd_text(self, text):
         self.mylcd.lcd_display_string(text, 1)
 
+    def lcd_clear(self):
+        self.mylcd.lcd_clear()
+
     @staticmethod
     def configure():
         GPIO.setmode(GPIO.BCM)
