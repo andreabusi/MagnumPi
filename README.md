@@ -14,6 +14,20 @@ The following feature are already available
 
 - **/gpio**
 
+## Development
+
+During the development phase, you can run the web application using flask. These are the commands that you need to run the app:
+
+```
+source venv/bin/activate
+cd code
+export FLASK_APP=magnumpi.py
+export SIMULATOR=0
+flask run
+```
+
+*SIMULATOR* is a bash variable that allows the application to run outside a Raspberry Pi. Access to GPIO is simulated through mock classes inside *fakeRPi* package.
+
 ## Deployment
 
 To deploy this web application, follow the following steps.
