@@ -32,3 +32,7 @@ class MyGPIO:
     def turn_off(pin):
         GPIO.output(pin, GPIO.LOW)
 
+    @staticmethod
+    def input(pin):
+        return GPIO.input(pin)
+

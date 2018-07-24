@@ -21,6 +21,11 @@ def setup(a, b):
 def output(a, b):
     print('Output %s to pin %s' % (b, a))
 
+def input(pin):
+    state = random.choice([HIGH, LOW])
+    print('Input for pin %s is %s' % (pin, state))
+    return state
+
 
 def cleanup():
     print('a')
