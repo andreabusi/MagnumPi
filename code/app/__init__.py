@@ -1,10 +1,12 @@
 from flask import Flask
 from config import Config
-#from mygpio import gpio
-
+from redis import Redis
+import rq
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.redis = Redis.from_url(app.config['REDIS_URL'])
+app.task_queue = rq.Queue(app.config['QUEUE_BACKGROUND_TASKS'], connection=app.redis)
 
 
 from app import routes

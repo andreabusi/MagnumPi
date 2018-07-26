@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div>
+        <form action="/task/create" method="get" novalidate>
+            <input type="submit" value="Create new task" />
+        </form>
+    </div>
+
+    <h3>Running Jobs</h3>
+    <ul>
+        {% for task in model.running_job_ids %}
+            <li>
+                {{ task }} (<a href="/task/{{task}}">Show detail</a>)
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Queued Jobs</h3>
+    <ul>
+        {% for task in model.queued_job_ids %}
+            <li>{{ task }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
