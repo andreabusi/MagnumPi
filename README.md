@@ -24,7 +24,7 @@ This project requires:
 Redis installation depends on your platform:
 
 - *macOS*, you can install with Brew `brew install redis`
-- *Linux*, you can install via terminal `sudo apt-get install redis`
+- *Linux*, you can install via terminal `sudo apt-get install redis-server`
 
 When Redis is installed, simply start it with this command:
 
