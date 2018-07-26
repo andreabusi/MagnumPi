@@ -14,19 +14,40 @@ The following feature are already available
 
 - **/gpio**
 
+## Requirements
+
+This project requires:
+
+- Python 3.6
+- Redis
+
+Redis installation depends on your platform:
+
+- *macOS*, you can install with Brew `brew install redis`
+- *Linux*, you can install via terminal `sudo apt-get install redis`
+
+When Redis is installed, simply start it with this command:
+
+`$ redis-server`
+
 ## Development
 
 During the development phase, you can run the web application using flask. These are the commands that you need to run the app:
 
 ```
-source venv/bin/activate
-cd code
-export FLASK_APP=magnumpi.py
-export SIMULATOR=0
-flask run
+$ source venv/bin/activate
+(venv) $ cd code
+(venv) $ export SIMULATOR=1
+(venv) $ export FLASK_APP=magnumpi.py
+(venv) $ rq worker magnumpi-tasks
+(venv) $ flask run
 ```
 
-*SIMULATOR* is a bash variable that allows the application to run outside a Raspberry Pi. Access to GPIO is simulated through mock classes inside *fakeRPi* package.
+Some notes:
+
+- *SIMULATOR* is a bash variable that allows the application to run outside a Raspberry Pi. Access to GPIO is simulated through mock classes inside *fakeRPi* package. Use `SIMULATOR=1` when the wep application is not running on a Raspberry PI.
+- Redis must be running on the same machine in order to start the application (it's possible to change this configuration inside *config.py* file)
+- `rq worker magnumpi-tasks` this command start a worker for Redis. You can also start more workers depending on your needs.
 
 ## Deployment
 
@@ -35,8 +56,8 @@ To deploy this web application, follow the following steps.
 Clone the repository:
 
 ```
-git clone git@github.com:BubiDevs/MagnumPi.py
-cd MagnumPi
+$ git clone git@github.com:BubiDevs/MagnumPi.py
+$ cd MagnumPi
 ```
 
 Create the virtual environment and populate it with all the package dependencies:
