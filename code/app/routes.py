@@ -15,6 +15,14 @@ def index():
     return render_template('index.html', title='Index', env=environment)
 
 
+@app.route('/gpio')
+def route_gpio():
+    my_gpio = gpio.MyGPIO()
+    my_gpio.configure()
+    state = my_gpio.input(25)
+    return render_template('result.html', title='Sample GPIO', result_text="State for pin %s is %s" % (25, state))
+
+
 @app.route('/sample_gpio')
 def sample_gpio():
     # sample
