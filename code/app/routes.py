@@ -22,28 +22,17 @@ def index():
 @app.route('/gpio')
 def route_gpio():
     PIN = 26
-    my_gpio = gpio.MyGPIO()
-    my_gpio.configure()
-    my_gpio.turn_on(PIN)
-    return render_template('result.html', title='GPIO', result_text="State for pin %s is %s" % (PIN, 1))
-
-
-@app.route('/sample_gpio')
-def sample_gpio():
-    # sample
-    PIN_LED_RED = 17
-    PIN_LED_GREEN = 19
-
+    repetitions = 3
     my_gpio = gpio.MyGPIO()
     my_gpio.configure()
 
-    for i in range(3):
-        my_gpio.turn_on(PIN_LED_RED)
+    for i in range(repetitions):
+        my_gpio.turn_on(PIN)
         time.sleep(1)
-        my_gpio.turn_off(PIN_LED_RED)
+        my_gpio.turn_off(PIN)
         time.sleep(1)
 
-    return render_template('result.html', title='Sample GPIO', result_text="GPIO commands executed!")
+    return render_template('result.html', title='GPIO', result_text="Pin pin %s has blinked for %s times" % (PIN, repetitions))
 
 
 @app.route('/lcd', methods=['GET', 'POST'])
