@@ -21,10 +21,11 @@ def index():
 
 @app.route('/gpio')
 def route_gpio():
+    PIN = 26
     my_gpio = gpio.MyGPIO()
     my_gpio.configure()
-    state = my_gpio.input(25)
-    return render_template('result.html', title='Sample GPIO', result_text="State for pin %s is %s" % (25, state))
+    my_gpio.turn_on(PIN)
+    return render_template('result.html', title='GPIO', result_text="State for pin %s is %s" % (PIN, 1))
 
 
 @app.route('/sample_gpio')

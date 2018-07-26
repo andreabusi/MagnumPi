@@ -26,13 +26,16 @@ class MyGPIO:
 
     @staticmethod
     def turn_on(pin):
+        GPIO.setup(pin, GPIO.OUT)
         GPIO.output(pin, GPIO.HIGH)
 
     @staticmethod
     def turn_off(pin):
+        GPIO.setup(pin, GPIO.OUT)
         GPIO.output(pin, GPIO.LOW)
 
     @staticmethod
     def input(pin):
+        GPIO.setup(pin, GPIO.IN)
         return GPIO.input(pin)
 
