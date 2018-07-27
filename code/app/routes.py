@@ -1,13 +1,12 @@
 from flask import render_template, redirect, url_for
 from app import app
 from app.utils import Utils
-from app.forms import LcdForm
+from app.forms import LcdForm, GPIOForm
 from app.view_models import TaskViewModel
 from mygpio import gpio
 from rq.registry import StartedJobRegistry
 import redis
 import rq
-import time
 
 
 @app.route('/')
@@ -20,19 +19,17 @@ def index():
 
 
 @app.route('/gpio')
-def route_gpio():
-    PIN = 26
-    repetitions = 3
-    my_gpio = gpio.MyGPIO()
-    my_gpio.configure()
+def gpio():
+    return render_template('result.html', title='GPIO', result_text='Not yet implemented :)')
 
-    for i in range(repetitions):
-        my_gpio.turn_on(PIN)
-        time.sleep(1)
-        my_gpio.turn_off(PIN)
-        time.sleep(1)
 
-    return render_template('result.html', title='GPIO', result_text="Pin pin %s has blinked for %s times" % (PIN, repetitions))
+@app.route('/led_blink', methods=['GET', 'POST'])
+def led_blink():
+    form = GPIOForm()
+    if form.validate_on_submit():
+        rq_job = app.task_queue.enqueue('app.tasks.gpio_blink_pin', form.pin.data, form.repetitions.data, 1)
+        return render_template('result.html', title='LED Blinking', result_text="Led %s will blink for %s times" % (form.pin.data, form.repetitions.data))
+    return render_template('led_blink.html', title='LED Blinking', form=form)
 
 
 @app.route('/lcd', methods=['GET', 'POST'])

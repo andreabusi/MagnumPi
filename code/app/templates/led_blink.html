@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>LED Blinking</h1>
+
+    {% if previous_text %}
+    <p>Text sent: <strong>{{ previous_text }}</strong></p>
+    {% endif %}
+
+    <form action="/led_blink" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.pin.label }}<br>
+            {{ form.pin(size=2) }}
+        </p>
+        <p>
+            {{ form.repetitions.label }}<br>
+            {{ form.repetitions(size=2) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
