@@ -65,7 +65,7 @@ def route_tasks():
 @app.route('/task/create')
 def route_create_task():
     rq_job = app.task_queue.enqueue('app.tasks.example', 23)
-    return redirect(url_for('tasks'))
+    return redirect(url_for('route_tasks'))
 
 
 @app.route('/task/<job_id>', methods=['GET'])
