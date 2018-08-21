@@ -1,25 +1,51 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div>
-        <form action="/task/create" method="get" novalidate>
-            <input type="submit" value="Create new task" />
-        </form>
-    </div>
+    <h1>Background Tasks</h1>
 
     <h3>Running Jobs</h3>
-    <ul>
-        {% for task in model.running_job_ids %}
-            <li>
-                {{ task }} (<a href="/task/{{task}}">Show detail</a>)
-            </li>
-        {% endfor %}
-    </ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Job ID</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in model.running_job_ids %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ task }}</td>
+                <td><a href="/task/{{task}}">Show detail</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 
     <h3>Queued Jobs</h3>
-    <ul>
-        {% for task in model.queued_job_ids %}
-            <li>{{ task }}</li>
-        {% endfor %}
-    </ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Job ID</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in model.queued_job_ids %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ task }}</td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div>
+        <a href="/task/create" class="btn btn-primary" role="button">Create new task</a>
+        <a href="/tasks" class="btn btn-light" role="button">Refresh</a>
+    </div>
 {% endblock %}
