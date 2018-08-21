@@ -4,17 +4,23 @@
     <h1>LCD Display</h1>
 
     {% if previous_text %}
-    <p>Text sent: <strong>{{ previous_text }}</strong></p>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Text sent to display: <strong>{{ previous_text }}</strong>
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     {% endif %}
+
 
     <form action="/lcd" method="post" novalidate>
         {{ form.hidden_tag() }}
-        <p>
-            {{ form.lcd_text.label }}<br>
-            {{ form.lcd_text(size=32) }}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
+        <div class="form-group">
+            <input type="text" class="form-control" id="lcd_text" name="lcd_text" placeholder="Enter text to send to LCD">
+        </div>
 
-    <a href="/lcd_clear">Clear LCD</a>
+        <a href="/lcd_clear" class="btn btn-danger" role="button">Clear LCD</a>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 {% endblock %}
