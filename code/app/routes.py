@@ -44,7 +44,7 @@ def lcd():
 
 @app.route('/lcd_clear')
 def lcd_clear():
-    my_gpio = gpio.MyGPIO()
+    my_gpio = mygpio.MyGPIO()
     my_gpio.lcd_clear()
     form = LcdForm()
     return render_template('lcd.html', title='LCD Display', form=form)
