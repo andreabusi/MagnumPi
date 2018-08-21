@@ -11,7 +11,7 @@ import rq
 
 @app.route('/')
 @app.route('/index')
-def route_index():
+def index():
     environment = "Raspberry PI"
     if Utils.is_simulator():
         environment = "Simulator"
@@ -19,12 +19,12 @@ def route_index():
 
 
 @app.route('/gpio')
-def route_gpio():
+def gpio():
     return render_template('result.html', title='GPIO', result_text='Not yet implemented :)')
 
 
 @app.route('/led_blink', methods=['GET', 'POST'])
-def route_led_blink():
+def led_blink():
     form = GPIOForm()
     if form.validate_on_submit():
         rq_job = app.task_queue.enqueue('app.tasks.gpio_blink_pin', form.pin.data, form.repetitions.data, 1)
@@ -33,7 +33,7 @@ def route_led_blink():
 
 
 @app.route('/lcd', methods=['GET', 'POST'])
-def route_lcd():
+def lcd():
     form = LcdForm()
     if form.validate_on_submit():
         my_gpio = mygpio.MyGPIO()
@@ -43,7 +43,7 @@ def route_lcd():
 
 
 @app.route('/lcd_clear')
-def route_lcd_clear():
+def lcd_clear():
     my_gpio = gpio.MyGPIO()
     my_gpio.lcd_clear()
     form = LcdForm()
@@ -51,7 +51,7 @@ def route_lcd_clear():
 
 
 @app.route('/tasks')
-def route_tasks():
+def tasks():
     registry = StartedJobRegistry(app.config['QUEUE_BACKGROUND_TASKS'], connection=app.redis)
 
     model = TaskViewModel()
@@ -63,13 +63,13 @@ def route_tasks():
 
 
 @app.route('/task/create')
-def route_create_task():
+def task_create():
     rq_job = app.task_queue.enqueue('app.tasks.example', 23)
-    return redirect(url_for('route_tasks'))
+    return redirect(url_for('tasks'))
 
 
 @app.route('/task/<job_id>', methods=['GET'])
-def route_task_detail(job_id):
+def task_detail(job_id):
     try:
         rq_job = rq.job.Job.fetch(job_id, connection=app.redis)
     except (redis.exceptions.RedisError, rq.exceptions.NoSuchJobError):
