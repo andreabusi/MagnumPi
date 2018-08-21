@@ -3,7 +3,7 @@ from app import app
 from app.utils import Utils
 from app.forms import LcdForm, GPIOForm
 from app.view_models import TaskViewModel
-from mygpio import gpio
+from mygpio import mygpio
 from rq.registry import StartedJobRegistry
 import redis
 import rq
@@ -36,7 +36,7 @@ def route_led_blink():
 def route_lcd():
     form = LcdForm()
     if form.validate_on_submit():
-        my_gpio = gpio.MyGPIO()
+        my_gpio = mygpio.MyGPIO()
         my_gpio.lcd_text(form.lcd_text.data)
         return render_template('lcd.html', title='LCD Display', previous_text=form.lcd_text.data, form=form)
     return render_template('lcd.html', title='LCD Display', form=form)

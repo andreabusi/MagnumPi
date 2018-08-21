@@ -1,6 +1,6 @@
 import time
 from rq import get_current_job
-from mygpio import gpio
+from mygpio import mygpio
 
 
 def example(seconds):
@@ -17,7 +17,7 @@ def example(seconds):
 
 
 def gpio_blink_pin(pin, repetitions, pause_time):
-    my_gpio = gpio.MyGPIO()
+    my_gpio = mygpio.MyGPIO()
     my_gpio.configure()
 
     for i in range(repetitions):
