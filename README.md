@@ -2,7 +2,18 @@
 
 A simple web application to manage Raspberry PI GPIO.
 
-Actually work in progress...
+Actually this is a work in progress, any suggestions will be appreciated!
+
+## Screenshots
+
+![MagnumPi - Homepage](https://user-images.githubusercontent.com/847860/44450788-1652e480-a5f2-11e8-97af-0c1b04f72602.png)
+
+![MagnumPi - LED Blinking](https://user-images.githubusercontent.com/847860/44450790-1652e480-a5f2-11e8-82bd-0b5d292dce83.png)
+
+![MagnumPi - LCD Display](https://user-images.githubusercontent.com/847860/44450791-1652e480-a5f2-11e8-8182-92f74f964476.png)
+
+![MagnumPi - Background tasks](https://user-images.githubusercontent.com/847860/44450792-1652e480-a5f2-11e8-8721-4cca040af316.png)
+
 
 ## Available features
 
@@ -74,7 +85,7 @@ Install gunicorn as production web server:
 (venv) $ pip install gunicorn
 ```
 
-In a separate terminal tab, start redis workers::
+In a separate terminal tab, start redis workers:
 
 ```
 $ cd MagnumPi
