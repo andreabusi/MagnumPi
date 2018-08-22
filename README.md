@@ -8,7 +8,9 @@ Actually work in progress...
 
 The following feature are already available
 
-- **/lcd**: a sample page to send a text to I2C LCD display
+- **/lcd**: allows to to send a text to a I2C LCD display
+- **/led_blink**: allows to blink a led connected to a specific GPIO PIN
+- **/tasks**: allows to create background tasks. Actually this is only a demo page, that shows how to create and handle background tasks
 
 ## Requirements
 
@@ -72,9 +74,19 @@ Install gunicorn as production web server:
 (venv) $ pip install gunicorn
 ```
 
+In a separate terminal tab, start redis workers::
+
+```
+$ cd MagnumPi
+$ source venv/bin/activate
+(venv) cd code
+(venv) rq worker magnumpi-tasks
+```
+
 To start MagnumPi under gunicorn:
 
 ```
+(venv) cd code
 (venv) $ gunicorn -b localhost:8000 -w 4 magnumpi:app
 ```
 
