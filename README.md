@@ -84,11 +84,11 @@ To start MagnumPi under gunicorn:
 
 Here is a list of the planning activities. Some are quite simple, other could be a little bit tricky to implement.
 
-- [] GPIO section: set to low or high a specific pin
-- [] GPIO section: read a value from a specific pin
-- [] GPIO section: support for GPIO buttons
-- [] Add the capability to stop a background task (running or queued)
-- [] Display the current status of a running job directly in the task table
+- [ ] GPIO section: set to low or high a specific pin
+- [ ] GPIO section: read a value from a specific pin
+- [ ] GPIO section: support for GPIO buttons
+- [ ] Add the capability to stop a background task (running or queued)
+- [ ] Display the current status of a running job directly in the task table
 
 ## References
 
