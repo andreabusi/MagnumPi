@@ -10,10 +10,6 @@ The following feature are already available
 
 - **/lcd**: a sample page to send a text to I2C LCD display
 
-## In development features
-
-- **/gpio**
-
 ## Requirements
 
 This project requires:
@@ -84,6 +80,15 @@ To start MagnumPi under gunicorn:
 
 **Note**: If you need to access to web application from outside the deployment machine, you'll need to change *localhost* with the IP of the target machine.
 
+## ToDo
+
+Here is a list of the planning activities. Some are quite simple, other could be a little bit tricky to implement.
+
+- [] GPIO section: set to low or high a specific pin
+- [] GPIO section: read a value from a specific pin
+- [] GPIO section: support for GPIO buttons
+- [] Add the capability to stop a background task (running or queued)
+- [] Display the current status of a running job directly in the task table
 
 ## References
 
