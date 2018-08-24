@@ -9,14 +9,16 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Job ID</th>
+                <th scope="col">Progress</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            {% for task in model.running_job_ids %}
+            {% for task in model.running_jobs %}
             <tr>
                 <td>{{ loop.index }}</td>
-                <td>{{ task }}</td>
+                <td>{{ task.job_id }}</td>
+                <td>{{ task.progress|round(2) }} %</td>
                 <td><a href="/task/{{task}}">Show detail</a></td>
             </tr>
             {% endfor %}

@@ -3,8 +3,8 @@ from app import app
 from app.utils import Utils
 from app.forms import LcdForm, GPIOForm
 from app.view_models import TaskViewModel
+from app.tasks_helpers import TasksHelpers
 from mygpio import mygpio
-from rq.registry import StartedJobRegistry
 import redis
 import rq
 
@@ -52,12 +52,12 @@ def lcd_clear():
 
 @app.route('/tasks')
 def tasks():
-    registry = StartedJobRegistry(app.config['QUEUE_BACKGROUND_TASKS'], connection=app.redis)
+    helpers = TasksHelpers(app.config['QUEUE_BACKGROUND_TASKS'], connection=app.redis)
 
     model = TaskViewModel()
-    model.running_job_ids = registry.get_job_ids()
+    model.running_jobs = helpers.get_running_jobs()
     model.queued_job_ids = app.task_queue.job_ids
-    model.expired_job_ids = registry.get_expired_job_ids()
+    model.expired_job_ids = helpers.get_expired_jobs()
 
     return render_template('task.html', title='Background Tasks', model=model)
 

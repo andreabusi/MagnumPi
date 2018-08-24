@@ -1,5 +1,5 @@
 class TaskViewModel:
-    running_job_ids = []
+    running_jobs = []
     queued_job_ids = []
     expired_job_ids = []
 
