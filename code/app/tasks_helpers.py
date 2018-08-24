@@ -25,3 +25,11 @@ class TasksHelpers:
     def get_expired_jobs(self):
         return self.registry.get_expired_job_ids()
 
+    def cancel_job(self, job_id):
+        try:
+            rq_job = rq.job.Job.fetch(job_id, connection=self.connection)
+        except ():
+            rq_job = None
+        if rq_job is not None:
+            rq_job.cancel()
+

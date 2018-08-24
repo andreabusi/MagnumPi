@@ -68,6 +68,13 @@ def task_create():
     return redirect(url_for('tasks'))
 
 
+@app.route('/task/cancel/<job_id>', methods=['GET'])
+def task_cancel(job_id):
+    helpers = TasksHelpers(app.config['QUEUE_BACKGROUND_TASKS'], connection=app.redis)
+    helpers.cancel_job(job_id)
+    return redirect(url_for('tasks'))
+
+
 @app.route('/task/<job_id>', methods=['GET'])
 def task_detail(job_id):
     try:
