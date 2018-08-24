@@ -73,14 +73,3 @@ def task_cancel(job_id):
     helpers = TasksHelpers(app.config['QUEUE_BACKGROUND_TASKS'], connection=app.redis)
     helpers.cancel_job(job_id)
     return redirect(url_for('tasks'))
-
-
-@app.route('/task/<job_id>', methods=['GET'])
-def task_detail(job_id):
-    try:
-        rq_job = rq.job.Job.fetch(job_id, connection=app.redis)
-    except (redis.exceptions.RedisError, rq.exceptions.NoSuchJobError):
-        rq_job = None
-    percentage = rq_job.meta.get('progress', 0) if rq_job is not None else 100
-    result = 'Completion percentage: %s' % percentage
-    return render_template('result.html', title='Background Task', result_text=result)
