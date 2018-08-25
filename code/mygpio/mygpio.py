@@ -11,13 +11,23 @@ else:
 class MyGPIO:
     def __init__(self):
         self.name = "GPIO"
-        self.mylcd = RPi_I2C_driver.lcd(address=0x3f)
+        try:
+            self.mylcd = RPi_I2C_driver.lcd(address=0x3f)
+        except:
+            self.mylcd = None
+
+    def is_lcd_connected(self):
+        return self.mylcd is not None
 
     def lcd_text(self, text):
-        self.mylcd.lcd_display_string(text, 1)
+        if self.is_lcd_connected():
+            self.mylcd.lcd_display_string(text, 1)
+            return True
+        return False
 
     def lcd_clear(self):
-        self.mylcd.lcd_clear()
+        if self.is_lcd_connected():
+            self.mylcd.lcd_clear()
 
     @staticmethod
     def configure():
