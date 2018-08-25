@@ -112,7 +112,7 @@ Here is a list of the planning activities. Some are quite simple, other could be
 - [ ] GPIO section: support for GPIO buttons
 - [X] Add the capability to stop a background task (running or queued)
 - [X] Display the current status of a running job directly in the task table
-- [ ] Handle errors if LCD display is not connected
+- [X] Handle errors if LCD display is not connected
 
 ## References
 
