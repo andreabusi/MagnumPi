@@ -28,6 +28,8 @@ class MyGPIO:
     def lcd_clear(self):
         if self.is_lcd_connected():
             self.mylcd.lcd_clear()
+            return True
+        return False
 
     @staticmethod
     def configure():
