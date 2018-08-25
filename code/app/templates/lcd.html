@@ -3,9 +3,19 @@
 {% block content %}
     <h1>LCD Display</h1>
 
-    {% if previous_text %}
+    {% if error_message %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ error_message }}
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+
+    {% if info_message %}
     <div class="alert alert-primary alert-dismissible fade show" role="alert">
-        Text sent to display: <strong>{{ previous_text }}</strong>
+       {{ info_message }}
 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>

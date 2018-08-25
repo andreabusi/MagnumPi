@@ -37,17 +37,30 @@ def lcd():
     form = LcdForm()
     if form.validate_on_submit():
         my_gpio = mygpio.MyGPIO()
-        my_gpio.lcd_text(form.lcd_text.data)
-        return render_template('lcd.html', title='LCD Display', previous_text=form.lcd_text.data, form=form)
-    return render_template('lcd.html', title='LCD Display', form=form)
+        result = my_gpio.lcd_text(form.lcd_text.data)
+        if result == True:
+            message = "Text sent to display: '%s'" % form.lcd_text.data
+            return render_template('lcd.html', title='LCD Display', info_message=message, form=form)
+        else:
+            error = "Error when sending message to LCD, make sure that is properly connected"
+            return render_template('lcd.html', title='LCD Display', error_message=error, form=form)
+
+    my_gpio = mygpio.MyGPIO()
+    error = None
+    if my_gpio.is_lcd_connected() == False:
+        error = "There is no LCD connected!"
+    return render_template('lcd.html', title='LCD Display', error_message=error, form=form)
 
 
 @app.route('/lcd_clear')
 def lcd_clear():
     my_gpio = mygpio.MyGPIO()
-    my_gpio.lcd_clear()
+    result = my_gpio.lcd_clear()
+    error = None
+    if result == False:
+        error = "Error when sending clear command to LCD, make sure that is properly connected"
     form = LcdForm()
-    return render_template('lcd.html', title='LCD Display', form=form)
+    return render_template('lcd.html', title='LCD Display', error_message=error, form=form)
 
 
 @app.route('/tasks')
