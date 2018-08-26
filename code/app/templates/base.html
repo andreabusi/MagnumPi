@@ -73,7 +73,10 @@
 
 <script>
   $(document).ready(function () {
-  $("#{{request.endpoint}}").addClass("active"); })
+    $("#{{request.endpoint}}").addClass("active");
+  })
+
+  {% block script %}{% endblock %}
 </script>
 
 </body>
