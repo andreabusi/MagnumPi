@@ -10,8 +10,8 @@
             {{ form.hidden_tag() }}
 
             <div class="form-group mb-1">
-                <label for="recap-pin" class="sr-only">Pin</label>
-                <input type="text" readonly class="form-control-plaintext" id="recap-pin" value="Pin 0">
+                <label for="recap-pin" class="sr-only">No pin selected</label>
+                <input type="text" readonly class="form-control-plaintext" id="recap-pin" value="No pin selected">
             </div>
 
             <div class="form-group mx-sm-3 mb-2">
@@ -34,7 +34,7 @@
     <div class="container-fluid" id="pins">
         <ul>
             {% for pin in pins %}
-                <li class="pin" data-pin="{{ pin.pin }}">{{ pin.title }}{% if pin.subtitle %} ({{ pin.subtitle }}) {% endif %}</li>
+                <li class="pin" data-pin="{{ pin.pin }}" data-pintitle="{{ pin.title }}">{{ pin.title }}{% if pin.subtitle %} ({{ pin.subtitle }}) {% endif %}</li>
             {% endfor %}
         </ul>
     </div>
@@ -54,11 +54,15 @@
             });
 
             $('li.pin').click(function() {
+                // set only the current list item as selectet
                 $('li.pin').removeClass('pin-active');
                 $(this).addClass('pin-active');
+
+                // update the info of the selected pin in the recap
                 var pin = $(this).data('pin');
+                var pin_title = $(this).data('pintitle');
                 $('input[name="pin"]').val(pin);
-                $('#recap-pin').val('Pin ' + pin);
+                $('#recap-pin').val(pin_title + ' (#' + pin + ')');
             });
 
             $('#recap-send-btn').click(function(event){
