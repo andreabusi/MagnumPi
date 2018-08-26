@@ -213,9 +213,9 @@
 		{
 			"pin" : 31,
 			"type" : "gpio",
-			"title" : "BCM 5",
+			"title" : "BCM 6",
 			"subtitle" : "",
-			"bcm" : 5
+			"bcm" : 6
 		},
 		{
 			"pin" : 32,
