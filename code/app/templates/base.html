@@ -52,35 +52,32 @@
     </div>
 </nav>
 
-    <!-- Begin page content -->
-    <main role="main" class="container">
+<!-- Begin page content -->
+<main role="main" class="container">
 
-        {% if error_message %}
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ error_message }}
+    {% if error_message %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ error_message }}
 
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        {% endif %}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
 
-        {% if info_message %}
-        <div class="alert alert-primary alert-dismissible fade show" role="alert">
-           {{ info_message }}
+    {% if info_message %}
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        {{ info_message }}
 
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        {% endif %}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
 
-        {% block content %}{% endblock %}
-    </main>
+    {% block content %}{% endblock %}
+</main>
 
-<div class="container">
-
-</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
