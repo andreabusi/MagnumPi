@@ -45,7 +45,7 @@ def lcd():
 
     my_gpio = mygpio.MyGPIO()
     error = None
-    if my_gpio.is_lcd_connected() == False:
+    if not my_gpio.is_lcd_connected():
         error = "There is no LCD connected!"
     return render_template('lcd.html', title='LCD Display', error_message=error, form=form)
 
@@ -55,7 +55,7 @@ def lcd_clear():
     my_gpio = mygpio.MyGPIO()
     result = my_gpio.lcd_clear()
     error = None
-    if result == False:
+    if not result:
         error = "Error when sending clear command to LCD, make sure that is properly connected"
     form = LcdForm()
     return render_template('lcd.html', title='LCD Display', error_message=error, form=form)
@@ -75,7 +75,7 @@ def tasks():
 
 @app.route('/task/create')
 def task_create():
-    rq_job = app.task_queue.enqueue('app.tasks.example', 23)
+    _ = app.task_queue.enqueue('app.tasks.example', 23)
     return redirect(url_for('tasks'))
 
 
