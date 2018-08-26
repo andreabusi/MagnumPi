@@ -3,27 +3,6 @@
 {% block content %}
     <h1>LCD Display</h1>
 
-    {% if error_message %}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ error_message }}
-
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    {% endif %}
-
-    {% if info_message %}
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-       {{ info_message }}
-
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    {% endif %}
-
-
     <form action="/lcd" method="post" novalidate>
         {{ form.hidden_tag() }}
         <div class="form-group">
