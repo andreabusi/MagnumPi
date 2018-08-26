@@ -1,12 +1,10 @@
 from flask import render_template, redirect, url_for
 from app import app
 from app.utils import Utils
-from app.forms import LcdForm, GPIOForm
+from app.forms import LcdForm, LedForm
 from app.view_models import TaskViewModel
 from app.tasks_helpers import TasksHelpers
 from mygpio import mygpio
-import redis
-import rq
 
 
 @app.route('/')
@@ -25,7 +23,7 @@ def gpio():
 
 @app.route('/led_blink', methods=['GET', 'POST'])
 def led_blink():
-    form = GPIOForm()
+    form = LedForm()
     if form.validate_on_submit():
         rq_job = app.task_queue.enqueue('app.tasks.gpio_blink_pin', form.pin.data, form.repetitions.data, 1)
         return render_template('led_blink.html', title='LED Blinking', result_text="Led %s will blink for %s times" % (form.pin.data, form.repetitions.data), form=form)

@@ -8,7 +8,7 @@ class LcdForm(FlaskForm):
     submit = SubmitField('Display')
 
 
-class GPIOForm(FlaskForm):
+class LedForm(FlaskForm):
     pin = IntegerField('PIN', validators=[DataRequired()])
     repetitions = IntegerField('Repetitions', validators=[DataRequired()])
     submit = SubmitField('Blink!')
