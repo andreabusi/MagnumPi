@@ -22,11 +22,11 @@ class MyGPIO:
     def is_lcd_connected(self):
         return self.mylcd is not None
 
-    def is_pin_gpio(self, pin):
+    def get_pin_info(self, pin):
         pin_item = list(filter(lambda x: x['pin'] == pin, self.pins))
         if pin_item[0]['type'] == 'GND' or pin_item[0]['type'] == 'VCC':
-            return False
-        return True
+            return None
+        return pin_item[0]
 
     def lcd_text(self, text):
         if self.is_lcd_connected():

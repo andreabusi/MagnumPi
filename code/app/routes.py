@@ -22,16 +22,15 @@ def gpio():
     my_gpio = mygpio.MyGPIO()
     pins = my_gpio.get_pins()
     if form.validate_on_submit():
-        pin = form.pin.data
-        is_valid = my_gpio.is_pin_gpio(pin)
-        if is_valid:
+        pin_info = my_gpio.get_pin_info(form.pin.data)
+        if pin_info is not None:
             my_gpio.configure()
             if form.value.data:
-                my_gpio.turn_on(pin)
+                my_gpio.turn_on(pin_info['bcm'])
             else:
-                my_gpio.turn_off(pin)
+                my_gpio.turn_off(pin_info['bcm'])
             error_message = None
-            info_message = 'Pin %s setted as %s' % (form.pin.data, 'high' if form.value.data else 'low')
+            info_message = 'Pin %s (# %s) setted as %s' % (pin_info['title'], form.pin.data, 'high' if form.value.data else 'low')
         else:
             info_message = None
             error_message = 'You cannot send outputs to VCC or GND pins'
