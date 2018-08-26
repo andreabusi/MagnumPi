@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for
 from app import app
 from app.utils import Utils
-from app.forms import LcdForm, LedForm
+from app.forms import LcdForm, LedForm, GenericCPIOForm
 from app.view_models import TaskViewModel
 from app.tasks_helpers import TasksHelpers
 from mygpio import mygpio
@@ -16,9 +16,27 @@ def index():
     return render_template('index.html', title='Index', env=environment)
 
 
-@app.route('/gpio')
+@app.route('/gpio', methods=['GET', 'POST'])
 def gpio():
-    return render_template('result.html', title='GPIO', result_text='Not yet implemented :)')
+    form = GenericCPIOForm()
+    my_gpio = mygpio.MyGPIO()
+    pins = my_gpio.get_pins()
+    if form.validate_on_submit():
+        pin = form.pin.data
+        is_valid = my_gpio.is_pin_gpio(pin)
+        if is_valid:
+            my_gpio.configure()
+            if form.value.data:
+                my_gpio.turn_on(pin)
+            else:
+                my_gpio.turn_off(pin)
+            error_message = None
+            info_message = 'Pin %s setted as %s' % (form.pin.data, 'high' if form.value.data else 'low')
+        else:
+            info_message = None
+            error_message = 'You cannot send outputs to VCC or GND pins'
+        return render_template('gpio_board.html', title='GPIO', form=form, pins=pins, info_message=info_message, error_message=error_message)
+    return render_template('gpio_board.html', title='GPIO', form=form, pins=pins)
 
 
 @app.route('/led_blink', methods=['GET', 'POST'])

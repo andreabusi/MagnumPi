@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+    <div class="container col-md-6 col-md-offset-3" id="recap">
+
+        <form id="recap-form" action="/gpio" method="post" novalidate class="form-inline">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group mb-1">
+                <label for="recap-pin" class="sr-only">Pin</label>
+                <input type="text" readonly class="form-control-plaintext" id="recap-pin" value="Pin 0">
+            </div>
+
+            <div class="form-group mx-sm-3 mb-2">
+                <div id="recap-values" class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active">
+                        <input type="radio" name="options" id="value-low" autocomplete="off" value="low"> Low
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="value-high" autocomplete="off" value="high"> High
+                    </label>
+                </div>
+            </div>
+
+            <input type="hidden" id="pin" name="pin" value="">
+            <input type="hidden" id="value" name="value" value="">
+            <button type="submit" class="btn btn-primary mb-2">Send</button>
+        </form>
+    </div>
+
+    <div class="container-fluid" id="pins">
+        <ul>
+            {% for pin in pins %}
+                <li class="pin" data-pin="{{ pin.pin }}">{{ pin.title }}{% if pin.subtitle %} ({{ pin.subtitle }}) {% endif %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+        $(function(){
+            $('input[type=radio][name=options]').change(function() {
+                if (this.value == 'low') {
+                    $('input[name="value"]').val(0);
+                }
+                else if (this.value == 'high') {
+                    $('input[name="value"]').val(1);
+                }
+            });
+
+            $('li.pin').click(function() {
+                $('li.pin').removeClass('pin-active');
+                $(this).addClass('pin-active');
+                var pin = $(this).data('pin');
+                $('input[name="pin"]').val(pin);
+                $('#recap-pin').val('Pin ' + pin);
+            });
+
+            $('#recap-send-btn').click(function(event){
+                event.stopPropagation();
+                $('#recap-form').submit();
+            });
+
+            $('input[name="pin"]').val(0);
+            $('input[name="value"]').val(0);
+        });
+
+{% endblock %}
+
+{% block style %}
+        #recap {
+            text-align: center;
+        }
+
+        h2, .aaa {
+            display: inline;
+        }
+
+        #pins {
+            background-color: red;
+        }
+
+        #pins > ul > li {
+            display: block;
+            width: 50%;
+            float: left;
+        }
+
+        .pin {
+            background: #5f8645;
+            color: #e9e5d2;
+        }
+
+        .pin:hover, .pin-active {
+            color: #063541;
+            background-color: #f5f3ed;
+        }
+{% endblock %}
