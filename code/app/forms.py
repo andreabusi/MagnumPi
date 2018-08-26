@@ -9,8 +9,8 @@ class LcdForm(FlaskForm):
 
 
 class GenericCPIOForm(FlaskForm):
-    pin = IntegerField('PIN', validators=[DataRequired()])
-    value = BooleanField('Value', validators=[DataRequired()])
+    pin = IntegerField('pin', validators=[DataRequired()])
+    value = StringField('value', validators=[DataRequired()])
 
 
 class LedForm(FlaskForm):

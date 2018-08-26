@@ -46,10 +46,10 @@
         $(function(){
             $('input[type=radio][name=options]').change(function() {
                 if (this.value == 'low') {
-                    $('input[name="value"]').val(0);
+                    $('input[name="value"]').val('low');
                 }
                 else if (this.value == 'high') {
-                    $('input[name="value"]').val(1);
+                    $('input[name="value"]').val('high');
                 }
             });
 
@@ -66,8 +66,8 @@
                 $('#recap-form').submit();
             });
 
-            $('input[name="pin"]').val(0);
-            $('input[name="value"]').val(0);
+            $('input[name="pin"]').val('0');
+            $('input[name="value"]').val('low');
         });
 
 {% endblock %}

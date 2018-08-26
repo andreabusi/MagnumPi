@@ -25,12 +25,12 @@ def gpio():
         pin_info = my_gpio.get_pin_info(form.pin.data)
         if pin_info is not None:
             my_gpio.configure()
-            if form.value.data:
+            if form.value.data == 'high':
                 my_gpio.turn_on(pin_info['bcm'])
             else:
                 my_gpio.turn_off(pin_info['bcm'])
             error_message = None
-            info_message = 'Pin %s (# %s) setted as %s' % (pin_info['title'], form.pin.data, 'high' if form.value.data else 'low')
+            info_message = 'Pin %s (# %s) setted as %s' % (pin_info['title'], form.pin.data, form.value.data)
         else:
             info_message = None
             error_message = 'You cannot send outputs to VCC or GND pins'
