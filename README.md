@@ -8,17 +8,20 @@ Actually this is a work in progress, any suggestions will be appreciated!
 
 ![MagnumPi - Homepage](https://user-images.githubusercontent.com/847860/44450788-1652e480-a5f2-11e8-97af-0c1b04f72602.png)
 
-![MagnumPi - LED Blinking](https://user-images.githubusercontent.com/847860/44450790-1652e480-a5f2-11e8-82bd-0b5d292dce83.png)
+![MagnumPi - GPIO](https://user-images.githubusercontent.com/847860/44653882-40d8df00-a9f0-11e8-83e6-3637a3801c94.png)
 
-![MagnumPi - LCD Display](https://user-images.githubusercontent.com/847860/44450791-1652e480-a5f2-11e8-8182-92f74f964476.png)
+![MagnumPi - LED Blinking](https://user-images.githubusercontent.com/847860/44654155-0ae82a80-a9f1-11e8-87cc-7f95c42af675.png)
 
-![MagnumPi - Background tasks](https://user-images.githubusercontent.com/847860/44450792-1652e480-a5f2-11e8-8721-4cca040af316.png)
+![MagnumPi - LCD Display](https://user-images.githubusercontent.com/847860/44653939-6b2a9c80-a9f0-11e8-8b8a-cd17fec9aad9.png)
+
+![MagnumPi - Background tasks](https://user-images.githubusercontent.com/847860/44653951-72ea4100-a9f0-11e8-8dfb-c3e7e9f762c4.png)
 
 
 ## Available features
 
 The following feature are already available
 
+- **/gpio**: allows to send high or low signal to a GPIO pin
 - **/lcd**: allows to to send a text to a I2C LCD display
 - **/led_blink**: allows to blink a led connected to a specific GPIO PIN
 - **/tasks**: allows to create background tasks. Actually this is only a demo page, that shows how to create and handle background tasks
