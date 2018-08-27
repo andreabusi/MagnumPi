@@ -43,7 +43,8 @@ def led_blink():
     form = LedForm()
     if form.validate_on_submit():
         rq_job = app.task_queue.enqueue('app.tasks.gpio_blink_pin', form.pin.data, form.repetitions.data, 1)
-        return render_template('led_blink.html', title='LED Blinking', result_text="Led %s will blink for %s times" % (form.pin.data, form.repetitions.data), form=form)
+        info_message = "Led %s will blink for %s times" % (form.pin.data, form.repetitions.data)
+        return render_template('led_blink.html', title='LED Blinking', info_message=info_message, form=form)
     return render_template('led_blink.html', title='LED Blinking', form=form)
 
 
