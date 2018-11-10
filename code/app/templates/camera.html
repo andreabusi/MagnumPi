@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block style %}
+#img-live {
+    max-height: 800px;
+    max-width: 600px;
+}
+{% endblock %}
+
+{% block content %}
+    <h1>Live Camera</h1>
+
+    <img id="img-live" src="{{ url_for('camera_video_feed') }}" />
+{% endblock %}
