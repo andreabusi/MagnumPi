@@ -25,6 +25,7 @@ The following feature are already available
 - **/lcd**: allows to to send a text to a I2C LCD display
 - **/led_blink**: allows to blink a led connected to a specific GPIO PIN
 - **/tasks**: allows to create background tasks. Actually this is only a demo page, that shows how to create and handle background tasks
+- **/camera**: show a live video streaming from a PiCamera (or a simulated one if not available)
 
 ## Requirements
 
@@ -121,5 +122,6 @@ Here is a list of the planning activities. Some are quite simple, other could be
 ## References
 
 * [The Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvii-deployment-on-linux)
+* [Flask Video Streaming Revisited](https://blog.miguelgrinberg.com/post/flask-video-streaming-revisited)
 * [How to setup an I2C LCD on the Raspberry Pi](http://www.circuitbasics.com/raspberry-pi-i2c-lcd-set-up-and-programming/)
 * [Raspberry Pi Pinout](https://it.pinout.xyz)

@@ -1,7 +1,7 @@
 from app.utils import Utils
 import json
-# when the app runs on a non raspberry environment, a fake library will be imported
 if Utils.is_simulator():
+    # on Simulator (or non RaspberryPI environment), a fake library is used to simulate GPIO
     import fakeRPi.GPIO as GPIO
     import fakeRPi.RPi_I2C_driver as RPi_I2C_driver
 else:

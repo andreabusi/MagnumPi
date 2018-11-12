@@ -1,9 +1,14 @@
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, Response
 from app import app
 from app.utils import Utils
 from app.forms import LcdForm, LedForm, GenericCPIOForm
 from app.view_models import TaskViewModel
 from app.tasks_helpers import TasksHelpers
+if Utils.is_simulator():
+    # on simulator, use a simulated camera
+    from mycamera.camera import Camera
+else:
+    from mycamera.camera_pi import Camera
 from mygpio import mygpio
 
 
@@ -102,3 +107,20 @@ def task_cancel(job_id):
     helpers = TasksHelpers(app.config['QUEUE_BACKGROUND_TASKS'], connection=app.redis)
     helpers.cancel_job(job_id)
     return redirect(url_for('tasks'))
+
+
+@app.route('/camera')
+def camera():
+    return render_template('camera.html', title='Live Camera')
+
+
+@app.route('/camera_video_feed')
+def camera_video_feed():
+    return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
+def gen(camera_instance):
+    while True:
+        frame = camera_instance.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n');
