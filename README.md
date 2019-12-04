@@ -69,7 +69,7 @@ To deploy this web application, follow the following steps.
 Clone the repository:
 
 ```
-$ git clone git@github.com:BubiDevs/MagnumPi.py
+$ git clone git@github.com:BubiDevs/MagnumPi.git
 $ cd MagnumPi
 ```
 
