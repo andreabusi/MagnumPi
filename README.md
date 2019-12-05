@@ -16,7 +16,6 @@ Actually this is a work in progress, any suggestions will be appreciated!
 
 ![MagnumPi - Background tasks](https://user-images.githubusercontent.com/847860/44653951-72ea4100-a9f0-11e8-8dfb-c3e7e9f762c4.png)
 
-
 ## Available features
 
 The following feature are already available
@@ -47,7 +46,7 @@ When Redis is installed, simply start it with this command:
 
 During the development phase, you can run the web application using flask. These are the commands that you need to run the app:
 
-```
+```bash
 $ source venv/bin/activate
 (venv) $ cd code
 (venv) $ export SIMULATOR=1
@@ -68,14 +67,14 @@ To deploy this web application, follow the following steps.
 
 Clone the repository:
 
-```
+```bash
 $ git clone git@github.com:BubiDevs/MagnumPi.git
 $ cd MagnumPi
 ```
 
 Create the virtual environment and populate it with all the package dependencies:
 
-```
+```bash
 $ python3 -m venv --system-site-packages venv
 $ source venv/bin/activate
 (venv) $ pip install -r requirements.txt
@@ -85,13 +84,13 @@ $ source venv/bin/activate
 
 Install gunicorn as production web server:
 
-```
+```bash
 (venv) $ pip install gunicorn
 ```
 
 In a separate terminal tab, start redis workers:
 
-```
+```bash
 $ cd MagnumPi
 $ source venv/bin/activate
 (venv) cd code
@@ -100,7 +99,7 @@ $ source venv/bin/activate
 
 To start MagnumPi under gunicorn:
 
-```
+```bash
 (venv) cd code
 (venv) $ gunicorn -b localhost:8000 -w 4 magnumpi:app
 ```
@@ -121,7 +120,7 @@ Here is a list of the planning activities. Some are quite simple, other could be
 
 ## References
 
-* [The Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvii-deployment-on-linux)
-* [Flask Video Streaming Revisited](https://blog.miguelgrinberg.com/post/flask-video-streaming-revisited)
-* [How to setup an I2C LCD on the Raspberry Pi](http://www.circuitbasics.com/raspberry-pi-i2c-lcd-set-up-and-programming/)
-* [Raspberry Pi Pinout](https://it.pinout.xyz)
+- [The Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvii-deployment-on-linux)
+- [Flask Video Streaming Revisited](https://blog.miguelgrinberg.com/post/flask-video-streaming-revisited)
+- [How to setup an I2C LCD on the Raspberry Pi](http://www.circuitbasics.com/raspberry-pi-i2c-lcd-set-up-and-programming/)
+- [Raspberry Pi Pinout](https://it.pinout.xyz)
