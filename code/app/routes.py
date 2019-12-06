@@ -58,7 +58,7 @@ def lcd():
     form = LcdForm()
     if form.validate_on_submit():
         my_gpio = mygpio.MyGPIO()
-        result = my_gpio.lcd_text(form.lcd_text.data)
+        result = my_gpio.lcd_display_text(form.lcd_text.data)
         if result:
             message = "Text sent to display: '%s'" % form.lcd_text.data
             return render_template('lcd.html', title='LCD Display', info_message=message, form=form)
