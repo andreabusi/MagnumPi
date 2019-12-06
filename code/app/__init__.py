@@ -9,5 +9,7 @@ app.config.from_object(Config)
 app.redis = Redis.from_url(app.config['REDIS_URL'])
 app.task_queue = rq.Queue(app.config['QUEUE_BACKGROUND_TASKS'], connection=app.redis)
 
+from app.api import bp as api_bp
+app.register_blueprint(api_bp, url_prefix='/api')
 
 from app import routes
