@@ -3,13 +3,35 @@
 {% block content %}
     <h1>LCD Display</h1>
 
-    <form action="/lcd" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <div class="form-group">
-            <input type="text" class="form-control" id="lcd_text" name="lcd_text" placeholder="Enter text to send to LCD">
-        </div>
+    <a href="/lcd_clear" class="btn btn-danger" role="button">Clear LCD</a>
+    
+    <div class="sub-container">
+        <h2>Multiline Text</h2>
+        <p>Use this form to display a multiline text.</p>
+        <form action="/lcd" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <input type="text" class="form-control" id="lcd_text" name="lcd_text" placeholder="Enter text to send to LCD">
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Send multiline text</button>
+        </form>
+    </div>
 
-        <a href="/lcd_clear" class="btn btn-danger" role="button">Clear LCD</a>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="sub-container">
+        <h2>Single line</h2>
+        <p>Use this form to display a multiline text.</p>
+        <form action="/lcd_rows" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <input type="text" class="form-control" id="lcd_text" name="lcd_text" placeholder="Enter the text to send">
+                <input type="number" class="form-control" id="lcd_row" name="lcd_row" placeholder="Row number">
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Send rows</button>
+        </form>
+    </div>
+
+
+
 {% endblock %}

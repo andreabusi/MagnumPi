@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, Response
 from app import app
 from app.utils import Utils
-from app.forms import LcdForm, LedForm, GenericCPIOForm
+from app.forms import LcdForm, LcdRowForm, LedForm, GenericCPIOForm
 from app.view_models import TaskViewModel
 from app.tasks_helpers import TasksHelpers
 if Utils.is_simulator():
@@ -60,10 +60,10 @@ def lcd():
         my_gpio = mygpio.MyGPIO()
         result = my_gpio.lcd_display_text(form.lcd_text.data)
         if result:
-            message = "Text sent to display: '%s'" % form.lcd_text.data
+            message = "Sent text '%s' to display" % (form.lcd_text.data,)
             return render_template('lcd.html', title='LCD Display', info_message=message, form=form)
         else:
-            error = "Error when sending message to LCD, make sure that is properly connected"
+            error = "Error when sending text to LCD, make sure that is properly connected"
             return render_template('lcd.html', title='LCD Display', error_message=error, form=form)
 
     my_gpio = mygpio.MyGPIO()
@@ -72,6 +72,22 @@ def lcd():
         error = "There is no LCD connected!"
     return render_template('lcd.html', title='LCD Display', error_message=error, form=form)
 
+
+@app.route('/lcd_rows', methods=['POST'])
+def lcd_rows():
+    form = LcdRowForm()
+    if form.validate_on_submit():
+        my_gpio = mygpio.MyGPIO()
+        result = my_gpio.lcd_display_rowtext(form.lcd_text.data, form.lcd_row.data)
+        if result:
+            message = "Sent text '%s' for row '%s' to display" % (form.lcd_text.data, form.lcd_row.data)
+            return render_template('lcd.html', title='LCD Display', info_message=message, form=form)
+        else:
+            error = "Error when sending text to LCD, make sure that is properly connected"
+            return render_template('lcd.html', title='LCD Display', error_message=error, form=form)
+
+    form = LcdForm()
+    return render_template('lcd.html', title='LCD Display', error_message=None, form=form)
 
 @app.route('/lcd_clear')
 def lcd_clear():

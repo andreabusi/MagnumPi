@@ -8,6 +8,12 @@ class LcdForm(FlaskForm):
     submit = SubmitField('Display')
 
 
+class LcdRowForm(FlaskForm):
+    lcd_text = StringField('LcdText', validators=[DataRequired()])
+    lcd_row = IntegerField('LcdRow', validators=[DataRequired()])
+    submit = SubmitField('Display')
+
+
 class GenericCPIOForm(FlaskForm):
     pin = IntegerField('pin', validators=[DataRequired()])
     value = StringField('value', validators=[DataRequired()])
