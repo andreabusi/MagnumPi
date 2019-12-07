@@ -42,9 +42,38 @@ When Redis is installed, simply start it with this command:
 
 `$ redis-server`
 
+## Usage and deployment
+
+To start this web application, follow the following steps.
+
+- Clone the repository:
+
+```bash
+git clone git@github.com:BubiDevs/MagnumPi.git
+cd MagnumPi
+```
+
+- Create the virtual environment and install the dependencies:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+(venv) pip install -r requirements.txt
+```
+
+*Note*: if you are installing the webapp on RaspberryPi, use the `requirements-rpi.txt` file. It will install the platform dependant packages to use GPIO and LCD display.
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+(venv) pip install -r requirements-rpi.txt
+```
+
 ## Development
 
-During the development phase, you can run the web application using flask. These are the commands that you need to run the app:
+*As pre-requisited, clone and install the dependencies as descibed in the [Usage and deployment](#usage-and-deployment) section.*
+
+During the development phase, you can run the web application using `flask`. These are the commands that you need to run the app:
 
 ```bash
 source venv/bin/activate
@@ -52,37 +81,21 @@ source venv/bin/activate
 (venv) export SIMULATOR=1
 (venv) export FLASK_APP=magnumpi.py
 (venv) rq worker magnumpi-tasks
-(venv) flask run
+(venv) flask run --host=0.0.0.0
 ```
 
 Some notes:
 
-- *SIMULATOR* is a bash variable that allows the application to run outside a Raspberry Pi. Access to GPIO is simulated through mock classes inside *fakeRPi* package. Use `SIMULATOR=1` when the wep application is not running on a Raspberry PI.
+- `SIMULATOR` is a bash variable that allows the application to run outside a Raspberry Pi. Access to GPIO is simulated through mock classes inside *fakeRPi* package. Use `SIMULATOR=1` when the wep application is not running on a Raspberry PI.
+- `--host=0.0.0.0` allows to access flask web site also from outside the local machine
 - Redis must be running on the same machine in order to start the application (it's possible to change this configuration inside *config.py* file)
 - `rq worker magnumpi-tasks` this command start a worker for Redis. You can also start more workers depending on your needs.
 
-## Deployment
+### Deployment
 
-To deploy this web application, follow the following steps.
+*As pre-requisited, clone and install the dependencies as descibed in the [Usage and deployment](#usage-and-deployment) section.*
 
-Clone the repository:
-
-```bash
-git clone git@github.com:BubiDevs/MagnumPi.git
-cd MagnumPi
-```
-
-Create the virtual environment and populate it with all the package dependencies:
-
-```bash
-python3 -m venv --system-site-packages venv
-source venv/bin/activate
-(venv) pip install -r requirements.txt
-```
-
-(The option *--system-site-packages* is necessary to use Raspberry Pi system package as RPi.GPIO or smbus).
-
-Install gunicorn as production web server:
+For the production deploy, we are going to use `gunicorn` as production web server. Install it using `pip`:
 
 ```bash
 (venv) pip install gunicorn
@@ -116,6 +129,7 @@ Here is a list of the planning activities. Some are quite simple, other could be
 - [X] Add the capability to stop a background task (running or queued)
 - [X] Display the current status of a running job directly in the task table
 - [X] Handle errors if LCD display is not connected
+- [ ] Support multiline strings in LCD display
 - [ ] Review and improve MyGPIO class
 
 ## References
