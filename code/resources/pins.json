@@ -3,281 +3,281 @@
 		{
 			"pin" : 1,
 			"type" : "VCC",
-			"title" : "Alimentazione a 3.3V",
-			"subtitle" : "",
+			"title" : "3V3",
+			"subtitle" : "Power",
 			"bcm" : -1
 		},
 		{
 			"pin" : 2,
 			"type" : "VCC",
-			"title" : "Alimentazione a 5V",
-			"subtitle" : "",
+			"title" : "5V",
+			"subtitle" : "Power",
 			"bcm" : -1
 		},
 		{
 			"pin" : 3,
 			"type" : "gpio",
-			"title" : "BCM 2",
-			"subtitle" : "SDA",
+			"title" : "GPIO2",
+			"subtitle" : "SDA PC",
 			"bcm" : 2
 		},
 		{
 			"pin" : 4,
 			"type" : "VCC",
-			"title" : "Alimentazione a 5V",
-			"subtitle" : "",
+			"title" : "5V",
+			"subtitle" : "Power",
 			"bcm" : -1
 		},
 		{
 			"pin" : 5,
 			"type" : "gpio",
-			"title" : "BCM 3",
-			"subtitle" : "SCL",
+			"title" : "GPIO3",
+			"subtitle" : "SCL PC",
 			"bcm" : 3
 		},
 		{
 			"pin" : 6,
 			"type" : "GND",
-			"title" : "Massa",
+			"title" : "Ground",
 			"subtitle" : "",
 			"bcm" : -1
 		},
 		{
 			"pin" : 7,
 			"type" : "gpio",
-			"title" : "BCM 4",
-			"subtitle" : "GPCLK10",
+			"title" : "GPIO4",
+			"subtitle" : "",
 			"bcm" : 4
 		},
 		{
 			"pin" : 8,
 			"type" : "gpio",
-			"title" : "BCM 14",
-			"subtitle" : "TXD",
+			"title" : "GPIO14",
+			"subtitle" : "UART0 TXD",
 			"bcm" : 14
 		},
 		{
 			"pin" : 9,
 			"type" : "GND",
-			"title" : "Massa",
+			"title" : "Ground",
 			"subtitle" : "",
 			"bcm" : -1
 		},
 		{
 			"pin" : 10,
 			"type" : "gpio",
-			"title" : "BCM 15",
-			"subtitle" : "RXD",
+			"title" : "GPIO15",
+			"subtitle" : "UART0 RXD",
 			"bcm" : 15
 		},
 		{
 			"pin" : 11,
 			"type" : "gpio",
-			"title" : "BCM 17",
+			"title" : "GPIO17",
 			"subtitle" : "",
 			"bcm" : 17
 		},
 		{
 			"pin" : 12,
 			"type" : "gpio",
-			"title" : "BCM 18",
-			"subtitle" : "PWM0",
+			"title" : "GPIO18",
+			"subtitle" : "",
 			"bcm" : 18
 		},
 		{
 			"pin" : 13,
 			"type" : "gpio",
-			"title" : "BCM 27",
+			"title" : "GPIO27",
 			"subtitle" : "",
 			"bcm" : 27
 		},
 		{
 			"pin" : 14,
 			"type" : "GND",
-			"title" : "Massa",
+			"title" : "Ground",
 			"subtitle" : "",
 			"bcm" : -1
 		},
 		{
 			"pin" : 15,
 			"type" : "gpio",
-			"title" : "BCM 22",
+			"title" : "GPIO22",
 			"subtitle" : "",
 			"bcm" : 22
 		},
 		{
 			"pin" : 16,
 			"type" : "gpio",
-			"title" : "BCM 23",
+			"title" : "GPIO23",
 			"subtitle" : "",
 			"bcm" : 23
 		},
 		{
 			"pin" : 17,
 			"type" : "VCC",
-			"title" : "Alimentazione a 3.3V",
-			"subtitle" : "",
+			"title" : "3V3",
+			"subtitle" : "Power",
 			"bcm" : -1
 		},
 		{
 			"pin" : 18,
 			"type" : "gpio",
-			"title" : "BCM 24",
+			"title" : "GPIO24",
 			"subtitle" : "",
 			"bcm" : 24
 		},
 		{
 			"pin" : 19,
 			"type" : "gpio",
-			"title" : "BCM 10",
-			"subtitle" : "MOSI",
+			"title" : "GPIO10",
+			"subtitle" : "SPI MOSI",
 			"bcm" : 10
 		},
 		{
 			"pin" : 20,
 			"type" : "GND",
-			"title" : "Massa",
+			"title" : "Ground",
 			"subtitle" : "",
 			"bcm" : -1
 		},
 		{
 			"pin" : 21,
 			"type" : "gpio",
-			"title" : "BCM 9",
-			"subtitle" : "MISO",
+			"title" : "GPIO9",
+			"subtitle" : "SPI MISO",
 			"bcm" : 9
 		},
 		{
 			"pin" : 22,
 			"type" : "gpio",
-			"title" : "BCM 25",
+			"title" : "GPIO25",
 			"subtitle" : "",
 			"bcm" : 25
 		},
 		{
 			"pin" : 23,
 			"type" : "gpio",
-			"title" : "BCM 11",
-			"subtitle" : "SCLK",
+			"title" : "GPIO11",
+			"subtitle" : "SPI SCLK",
 			"bcm" : 11
 		},
 		{
 			"pin" : 24,
 			"type" : "gpio",
-			"title" : "BCM 8",
-			"subtitle" : "CE0",
+			"title" : "GPIO8",
+			"subtitle" : "SPI CE0",
 			"bcm" : 8
 		},
 		{
 			"pin" : 25,
 			"type" : "GND",
-			"title" : "Massa",
+			"title" : "Ground",
 			"subtitle" : "",
 			"bcm" : -1
 		},
 		{
 			"pin" : 26,
 			"type" : "gpio",
-			"title" : "BCM 7",
-			"subtitle" : "CE1",
+			"title" : "GPIO7",
+			"subtitle" : "SPI CE1",
 			"bcm" : 7
 		},
 		{
 			"pin" : 27,
 			"type" : "gpio",
-			"title" : "BCM 0",
-			"subtitle" : "ID_SD",
-			"bcm" : 0
+			"title" : "ID SD",
+			"subtitle" : "I2C ID",
+			"bcm" : -1
 		},
 		{
 			"pin" : 28,
 			"type" : "gpio",
-			"title" : "BCM 1",
-			"subtitle" : "ID_SC",
-			"bcm" : 1
+			"title" : "ID SC",
+			"subtitle" : "I2C ID",
+			"bcm" : -1
 		},
 		{
 			"pin" : 29,
 			"type" : "gpio",
-			"title" : "BCM 5",
+			"title" : "GPIO5",
 			"subtitle" : "",
 			"bcm" : 5
 		},
 		{
 			"pin" : 30,
 			"type" : "GND",
-			"title" : "Massa",
+			"title" : "Ground",
 			"subtitle" : "",
 			"bcm" : -1
 		},
 		{
 			"pin" : 31,
 			"type" : "gpio",
-			"title" : "BCM 6",
+			"title" : "GPIO6",
 			"subtitle" : "",
 			"bcm" : 6
 		},
 		{
 			"pin" : 32,
 			"type" : "gpio",
-			"title" : "BCM 12",
-			"subtitle" : "PWM0",
+			"title" : "GPIO12",
+			"subtitle" : "",
 			"bcm" : 12
 		},
 		{
 			"pin" : 33,
 			"type" : "gpio",
-			"title" : "BCM 13",
-			"subtitle" : "PWM1",
+			"title" : "GPIO13",
+			"subtitle" : "",
 			"bcm" : 13
 		},
 		{
 			"pin" : 34,
 			"type" : "GND",
-			"title" : "Massa",
+			"title" : "Ground",
 			"subtitle" : "",
-			"bcm" : 22
+			"bcm" : -1
 		},
 		{
 			"pin" : 35,
 			"type" : "gpio",
-			"title" : "BCM 19",
-			"subtitle" : "MISO",
+			"title" : "GPIO19",
+			"subtitle" : "",
 			"bcm" : 19
 		},
 		{
 			"pin" : 36,
 			"type" : "gpio",
-			"title" : "BCM 16",
+			"title" : "GPIO16",
 			"subtitle" : "",
 			"bcm" : 16
 		},
 		{
 			"pin" : 37,
 			"type" : "gpio",
-			"title" : "BCM 26",
+			"title" : "GPIO26",
 			"subtitle" : "",
 			"bcm" : 26
 		},
 		{
 			"pin" : 38,
 			"type" : "gpio",
-			"title" : "BCM 20",
-			"subtitle" : "MOSI",
+			"title" : "GPIO20",
+			"subtitle" : "",
 			"bcm" : 20
 		},
 		{
 			"pin" : 39,
 			"type" : "GND",
-			"title" : "Massa",
+			"title" : "Ground",
 			"subtitle" : "",
 			"bcm" : -1
 		},
 		{
 			"pin" : 40,
 			"type" : "gpio",
-			"title" : "BCM 21",
-			"subtitle" : "SCLK",
+			"title" : "GPIO21",
+			"subtitle" : "",
 			"bcm" : 21
 		}
 	]

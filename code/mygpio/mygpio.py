@@ -1,12 +1,15 @@
 from app.utils import Utils
+from time import sleep
 import json
-if Utils.is_simulator():
-    # on Simulator (or non RaspberryPI environment), a fake library is used to simulate GPIO
-    import fakeRPi.GPIO as GPIO
-    import fakeRPi.RPi_I2C_driver as RPi_I2C_driver
-else:
-    import RPi.GPIO as GPIO
-    import RPi_I2C_driver
+from gpiozero import LED
+from RPLCD.i2c import CharLCD
+# if Utils.is_simulator():
+#     # on Simulator (or non RaspberryPI environment), a fake library is used to simulate GPIO
+#     import fakeRPi.GPIO as GPIO
+#     import fakeRPi.RPi_I2C_driver as RPi_I2C_driver
+# else:
+#     import RPi.GPIO as GPIO
+#     import RPi_I2C_driver
 
 
 class MyGPIO:
@@ -14,11 +17,19 @@ class MyGPIO:
     LCD_ROW_NUMBERS = 4
 
     def __init__(self):
+        print("INIT MYGPIO")
         self.name = "GPIO"
         configuration = json.load(open("resources/pins.json"))
         self.pins = configuration['pins']
         try:
-            self.mylcd = RPi_I2C_driver.lcd(address=0x3f)
+            self.mylcd = CharLCD(
+                i2c_expander='PCF8574',
+                address=0x3f,
+                port=1,
+                cols=20,
+                rows=4,
+                dotsize=8
+            )
         except:
             self.mylcd = None
 
@@ -34,24 +45,23 @@ class MyGPIO:
         return self.pins
 
     @staticmethod
-    def configure():
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setwarnings(False)
-
-    @staticmethod
     def turn_on(pin):
-        GPIO.setup(pin, GPIO.OUT)
-        GPIO.output(pin, GPIO.HIGH)
+        # assume LED as output
+        output = LED(pin)
+        output.on()
+        #sleep(2)
 
     @staticmethod
     def turn_off(pin):
-        GPIO.setup(pin, GPIO.OUT)
-        GPIO.output(pin, GPIO.LOW)
+        # assume LED as output
+        output = LED(pin)
+        output.off()
+        #sleep(2)
 
-    @staticmethod
-    def input(pin):
-        GPIO.setup(pin, GPIO.IN)
-        return GPIO.input(pin)
+    # @staticmethod
+    # def input(pin):
+    #     GPIO.setup(pin, GPIO.IN)
+    #     return GPIO.input(pin)
 
     # LCD management
 
@@ -62,9 +72,18 @@ class MyGPIO:
     def lcd_clear(self):
         """Reset the text on the current connected LCD display"""
         if self.is_lcd_connected():
-            self.mylcd.lcd_clear()
+            self.mylcd.clear()
             return True
         return False
+
+    def lcd_text(self, text):
+        if self.is_lcd_connected():
+            self.mylcd.write_string(text)
+            return True
+        return False
+
+
+
 
     def lcd_display_rowtext(self, text, row):
         """Display a text on the LCD display for a given row"""

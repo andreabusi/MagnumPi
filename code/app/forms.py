@@ -22,4 +22,5 @@ class GenericCPIOForm(FlaskForm):
 class LedForm(FlaskForm):
     pin = IntegerField('PIN', validators=[DataRequired()])
     repetitions = IntegerField('Repetitions', validators=[DataRequired()])
+    sleep_time = IntegerField('Sleep time', validators=[DataRequired()], default=1000)
     submit = SubmitField('Blink!')

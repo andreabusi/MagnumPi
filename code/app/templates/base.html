@@ -50,10 +50,10 @@
                 <a class="nav-link" id="lcd" href="{{ url_for('lcd') }}">LCD</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="tasks" href="{{ url_for('tasks') }}">Background Tasks</a>
+                <a class="nav-link" id="tasks" href="{{ url_for('index') }}">Background Tasks</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="camera" href="{{ url_for('camera') }}">Live Camera</a>
+                <a class="nav-link" id="camera" href="{{ url_for('index') }}">Live Camera</a>
             </li>
         </ul>
     </div>
@@ -101,7 +101,7 @@
 <script>
   $(document).ready(function () {
     $("#{{request.endpoint}}").addClass("active");
-  })
+  });
 
   {% block script %}{% endblock %}
 </script>
