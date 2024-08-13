@@ -1,4 +1,8 @@
-from RPLCD.i2c import CharLCD
+from app.utils import Utils
+if Utils.is_simulator():
+    from devices.mock.mock_rplcd import CharLCD
+else:
+    from RPLCD.i2c import CharLCD
 
 
 class Lcd:
@@ -33,6 +37,7 @@ class Lcd:
 
 
     def lcd_text(self, text):
+        """Write text to display"""
         if self.is_connected():
             self.lcd.write_string(text)
             return True

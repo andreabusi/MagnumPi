@@ -2,7 +2,7 @@ from app.utils import Utils
 from time import sleep
 import json
 from gpiozero import LED
-from RPLCD.i2c import CharLCD
+#from RPLCD.i2c import CharLCD
 # if Utils.is_simulator():
 #     # on Simulator (or non RaspberryPI environment), a fake library is used to simulate GPIO
 #     import fakeRPi.GPIO as GPIO
@@ -21,17 +21,17 @@ class MyGPIO:
         self.name = "GPIO"
         configuration = json.load(open("resources/pins.json"))
         self.pins = configuration['pins']
-        try:
-            self.mylcd = CharLCD(
-                i2c_expander='PCF8574',
-                address=0x3f,
-                port=1,
-                cols=20,
-                rows=4,
-                dotsize=8
-            )
-        except:
-            self.mylcd = None
+        # try:
+        #     self.mylcd = CharLCD(
+        #         i2c_expander='PCF8574',
+        #         address=0x3f,
+        #         port=1,
+        #         cols=20,
+        #         rows=4,
+        #         dotsize=8
+        #     )
+        # except:
+        #     self.mylcd = None
 
     # GPIO management
 
