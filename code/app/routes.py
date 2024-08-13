@@ -2,6 +2,8 @@ from flask import render_template, redirect, url_for, Response
 from app import app
 from app.utils import Utils
 from app.forms import LcdForm, LcdRowForm, LedForm, GenericCPIOForm
+from devices.gpio import get_pins, get_pin_info
+from devices.led import turn_led_on, turn_led_off
 # from app.view_models import TaskViewModel
 # from app.tasks_helpers import TasksHelpers
 #if Utils.is_simulator():
@@ -24,16 +26,14 @@ def index():
 @app.route('/gpio', methods=['GET', 'POST'])
 def gpio():
     form = GenericCPIOForm()
-    my_gpio = mygpio.MyGPIO()
-    pins = my_gpio.get_pins()
+    pins = get_pins()
     if form.validate_on_submit():
-        pin_info = my_gpio.get_pin_info(form.pin.data)
+        pin_info = get_pin_info(form.pin.data)
         if pin_info is not None:
-            print("passo di qui")
             if form.value.data == 'high':
-                my_gpio.turn_on(pin_info['bcm'])
+                turn_led_on(pin_info['bcm'])
             else:
-                my_gpio.turn_off(pin_info['bcm'])
+                turn_led_off(pin_info['bcm'])
             error_message = None
             info_message = 'Pin %s (# %s) setted as %s' % (pin_info['title'], form.pin.data, form.value.data)
         else:
@@ -47,8 +47,8 @@ def gpio():
 def led_blink():
     form = LedForm()
     if form.validate_on_submit():
-        rq_job = app.task_queue.enqueue('app.tasks.gpio_blink_pin', form.pin.data, form.repetitions.data, form.sleep_time.data)
-        info_message = "Led %s will blink for %s times" % (form.pin.data, form.repetitions.data)
+        rq_job = app.task_queue.enqueue('devices.led.blink_led', form.pin.data, form.repetitions.data, form.sleep_time.data)
+        info_message = f"Led {form.pin.data} will blink for ${form.repetitions.data} times"
         return render_template('led_blink.html', title='LED Blinking', info_message=info_message, form=form)
     return render_template('led_blink.html', title='LED Blinking', form=form)
 
@@ -56,19 +56,19 @@ def led_blink():
 @app.route('/lcd', methods=['GET', 'POST'])
 def lcd():
     form = LcdForm()
+    app_lcd = app.lcd
+
     if form.validate_on_submit():
-        my_gpio = app.mygpio_instance
-        result = my_gpio.lcd_text(form.lcd_text.data)
+        result = app_lcd.lcd_text(form.lcd_text.data)
         if result:
-            message = "Sent text '%s' to display" % (form.lcd_text.data,)
+            message = f"Sent text '{form.lcd_text.data}' to display"
             return render_template('lcd.html', title='LCD Display', info_message=message, form=form)
         else:
             error = "Error when sending text to LCD, make sure that is properly connected"
             return render_template('lcd.html', title='LCD Display', error_message=error, form=form)
 
-    my_gpio = mygpio.MyGPIO()
     error = None
-    if not my_gpio.is_lcd_connected():
+    if not app_lcd.is_connected():
         error = "There is no LCD connected!"
     return render_template('lcd.html', title='LCD Display', error_message=error, form=form)
 

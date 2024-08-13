@@ -14,14 +14,3 @@ def example(seconds):
     job.meta['progress'] = 100.0
     job.save_meta()
     print('Task completed')
-
-
-def gpio_blink_pin(pin, repetitions, pause_time):
-    led = LED(pin)
-
-    sleep_time = pause_time / 1000
-    for i in range(repetitions):
-        led.on()
-        sleep(sleep_time)
-        led.off()
-        sleep(sleep_time)
