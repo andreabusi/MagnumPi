@@ -79,14 +79,14 @@ During the development phase, you can run the web application using `flask`. The
 source venv/bin/activate
 (venv) cd code
 (venv) export SIMULATOR=1
-(venv) export FLASK_APP=magnumpi.py
 (venv) rq worker magnumpi-tasks
-(venv) flask run --host=0.0.0.0
+(venv) flask --app magnumpi.py --debug run --host=0.0.0.0 --port=5001
 ```
 
 Some notes:
 
 - `SIMULATOR` is a bash variable that allows the application to run outside a Raspberry Pi. Access to GPIO is simulated through mock classes inside *fakeRPi* package. Use `SIMULATOR=1` when the wep application is not running on a Raspberry PI.
+- `--debug` enable autoreload when file change
 - `--host=0.0.0.0` allows to access flask web site also from outside the local machine
 - Redis must be running on the same machine in order to start the application (it's possible to change this configuration inside *config.py* file)
 - `rq worker magnumpi-tasks` this command start a worker for Redis. You can also start more workers depending on your needs.
