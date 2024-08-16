@@ -59,9 +59,10 @@ def lcd():
     app_lcd = app.lcd
 
     if form.validate_on_submit():
-        result = app_lcd.lcd_text(form.lcd_text.data)
+        print(f"new line {form.lcd_new_line.data}")
+        result = app_lcd.write_text(form.lcd_text.data, form.lcd_new_line.data)
         if result:
-            message = f"Sent text '{form.lcd_text.data}' to display"
+            message = f"Append text '{form.lcd_text.data}' to display"
             return render_template('lcd.html', title='LCD Display', info_message=message, form=form)
         else:
             error = "Error when sending text to LCD, make sure that is properly connected"
@@ -73,21 +74,21 @@ def lcd():
     return render_template('lcd.html', title='LCD Display', error_message=error, form=form)
 
 
-# @app.route('/lcd_rows', methods=['POST'])
-# def lcd_rows():
-#     form = LcdRowForm()
-#     if form.validate_on_submit():
-#         my_gpio = mygpio.MyGPIO()
-#         result = my_gpio.lcd_display_rowtext(form.lcd_text.data, form.lcd_row.data)
-#         if result:
-#             message = "Sent text '%s' for row '%s' to display" % (form.lcd_text.data, form.lcd_row.data)
-#             return render_template('lcd.html', title='LCD Display', info_message=message, form=form)
-#         else:
-#             error = "Error when sending text to LCD, make sure that is properly connected"
-#             return render_template('lcd.html', title='LCD Display', error_message=error, form=form)
+@app.route('/lcd_rows', methods=['POST'])
+def lcd_rows():
+    form = LcdRowForm()
+    if form.validate_on_submit():
+        app_lcd = app.lcd
+        result = app_lcd.write_rows([form.lcd_text_1.data, form.lcd_text_2.data, form.lcd_text_3.data, form.lcd_text_4.data])
+        if result:
+            message = "Sent text rows to display"
+            return render_template('lcd.html', title='LCD Display', info_message=message, form=form)
+        else:
+            error = "Error when sending text to LCD, make sure that is properly connected"
+            return render_template('lcd.html', title='LCD Display', error_message=error, form=form)
 
-#     form = LcdForm()
-#     return render_template('lcd.html', title='LCD Display', error_message=None, form=form)
+    form = LcdForm()
+    return render_template('lcd.html', title='LCD Display', error_message=None, form=form)
 
 @app.route('/lcd_clear')
 def lcd_clear():
